@@ -11,6 +11,10 @@ public class UserRegistrationService implements IUserRegistrationService {
     @Autowired
     private UserRegistrationRepository userRegistrationRepository;
 
+    public UserRegistrationService(UserRegistrationRepository userRegistrationRepository) {
+        this.userRegistrationRepository = userRegistrationRepository;
+    }
+
     @Override
     public User create(User klUser) {
         return userRegistrationRepository.save(klUser);

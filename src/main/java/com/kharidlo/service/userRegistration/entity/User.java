@@ -1,6 +1,6 @@
 package com.kharidlo.service.userRegistration.entity;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -8,6 +8,8 @@ import java.io.Serializable;
 
 @Entity
 @Data
+@Builder
+@AllArgsConstructor
 public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,4 +27,6 @@ public class User implements Serializable {
 
     @Column(name = "PHONE_NUMBER")
     private String phoneNumber;
+
+    public User(){}
 }
