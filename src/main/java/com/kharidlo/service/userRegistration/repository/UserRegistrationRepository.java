@@ -1,6 +1,6 @@
-package com.kharidlo.service.UserRegistration.Repository;
+package com.kharidlo.service.userRegistration.repository;
 
-import com.kharidlo.service.UserRegistration.Entity.User;
+import com.kharidlo.service.userRegistration.entity.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

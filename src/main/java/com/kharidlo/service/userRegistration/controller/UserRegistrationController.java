@@ -1,7 +1,7 @@
-package com.kharidlo.service.UserRegistration.ApiController;
+package com.kharidlo.service.userRegistration.controller;
 
-import com.kharidlo.service.UserRegistration.Service.IUserRegistrationService;
-import com.kharidlo.service.UserRegistration.Entity.User;
+import com.kharidlo.service.userRegistration.service.IUserRegistrationService;
+import com.kharidlo.service.userRegistration.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
