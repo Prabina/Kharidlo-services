@@ -1,4 +1,4 @@
-package com.kharidlo.service.authentication;
+package com.kharidlo.service.authentication.model;
 
 public class AuthenticationCredentials {
 }

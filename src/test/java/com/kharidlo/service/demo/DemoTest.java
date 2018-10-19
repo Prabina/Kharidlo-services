@@ -1,5 +1,6 @@
 package com.kharidlo.service.demo;
 
+import com.kharidlo.service.Demo;
 import org.junit.Assert;
 import org.junit.Test;
 
