@@ -1,4 +1,4 @@
-package com.kharidlo.service.demo;
+package com.kharidlo.service;
 
 public class Demo {
     public boolean testMethod(){
