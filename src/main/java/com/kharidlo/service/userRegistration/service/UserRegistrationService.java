@@ -1,5 +1,4 @@
 package com.kharidlo.service.userRegistration.service;
-
 import com.kharidlo.service.userRegistration.entity.User;
 import com.kharidlo.service.userRegistration.repository.UserRegistrationRepository;
 import org.springframework.beans.factory.annotation.Autowired;

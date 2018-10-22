@@ -1,4 +1,4 @@
-package com.kharidlo.service.UserRegistration.Entity;
+package com.kharidlo.service.userRegistration.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;

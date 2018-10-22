@@ -1,6 +1,6 @@
-package com.kharidlo.service.UserRegistration.Service;
+package com.kharidlo.service.userRegistration.service;
 
-import com.kharidlo.service.UserRegistration.Entity.User;
+import com.kharidlo.service.userRegistration.entity.User;
 
 public interface IUserRegistrationService {
     User create(User klUser);
