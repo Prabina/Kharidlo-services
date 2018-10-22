@@ -16,6 +16,10 @@ public class UserRegistrationService implements IUserRegistrationService {
 
     @Override
     public User create(User klUser) {
+        if (userRegistrationRepository.findUserByEmailId(klUser.getEmailId()) != null){
+            return null;
+        }
+
         return userRegistrationRepository.save(klUser);
     }
 }
