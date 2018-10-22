@@ -16,6 +16,7 @@ public class UserRegistrationController {
 
     @PostMapping
     public int post(@RequestBody User klUser) {
+
         return userRegistrationService.create(klUser).getId();
     }
 }

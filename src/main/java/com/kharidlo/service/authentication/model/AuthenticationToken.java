@@ -7,4 +7,5 @@ import lombok.Data;
 @Builder
 public class AuthenticationToken {
     private String token;
+    private String role;
 }

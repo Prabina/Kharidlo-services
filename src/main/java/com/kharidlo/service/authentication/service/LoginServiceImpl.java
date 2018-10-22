@@ -1,12 +1,10 @@
 package com.kharidlo.service.authentication.service;
 
 import com.kharidlo.service.authentication.authenticationlogic.AuthenticationLogic;
-import com.kharidlo.service.authentication.exception.LoginFailureException;
 import com.kharidlo.service.authentication.model.AuthenticationCredentials;
 import com.kharidlo.service.authentication.model.AuthenticationToken;
 import com.kharidlo.service.authentication.repository.UserLoginRepository;
 import com.kharidlo.service.userRegistration.entity.User;
-import com.kharidlo.service.userRegistration.repository.UserRegistrationRepository;
 import lombok.Builder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

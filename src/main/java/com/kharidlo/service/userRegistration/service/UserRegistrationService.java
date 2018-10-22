@@ -20,6 +20,8 @@ public class UserRegistrationService implements IUserRegistrationService {
             return null;
         }
 
+        //By default role is set to user
+        klUser.setRole("user");
         return userRegistrationRepository.save(klUser);
     }
 }

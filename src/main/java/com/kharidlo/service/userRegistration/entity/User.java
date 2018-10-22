@@ -3,6 +3,7 @@ package com.kharidlo.service.userRegistration.entity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -29,12 +30,8 @@ public class User implements Serializable {
     @Column(name = "PHONE_NUMBER")
     private String phoneNumber;
 
-    public User(String fullName, String emailId, String password, String phoneNumber){
-        this.fullName = fullName;
-        this.emailId = emailId;
-        this.password = password;
-        this.phoneNumber = phoneNumber;
-    }
+    @Column(name = "ROLE")
+    private String role;
 
     public User(){}
 }
