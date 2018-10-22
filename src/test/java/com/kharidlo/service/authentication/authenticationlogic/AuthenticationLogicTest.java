@@ -12,6 +12,10 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Optional;
+
+import static org.junit.Assert.*;
+
 @RunWith(MockitoJUnitRunner.class)
 public class AuthenticationLogicTest {
 
@@ -19,20 +23,20 @@ public class AuthenticationLogicTest {
     private AuthenticationLogic authenticationLogic;
 
     @Test
-    public void shouldReturnAuthenticationToken() throws LoginFailureException {
+    public void shouldReturnAuthenticationToken() {
         AuthenticationCredentials authenticationCredentials = AuthenticationCredentials.builder()
                 .emailId("abhisek@gmail.com").password("thoughtworks").build();
         User user = User.builder().emailId("abhisek@gmail.com").password("thoughtworks").build();
 
-        AuthenticationToken token = authenticationLogic.validateCredentials(authenticationCredentials, user);
-        Assert.assertNotNull(token.getToken());
+        Optional<AuthenticationToken> token = authenticationLogic.validateCredentials(authenticationCredentials, user);
+        assertNotNull(token.get());
     }
 
-    @Test(expected = LoginFailureException.class)
-    public void shouldThrowExceptionIfCredentialsNotMatch() throws LoginFailureException {
+    @Test
+    public void shouldReturnNullIfCredentialsNotMatch() {
         AuthenticationCredentials authenticationCredentials = AuthenticationCredentials.builder()
                 .emailId("abhisek@gmail.com").password("thoughtworks").build();
         User user = User.builder().emailId("abhisek@gmail.com").password("abc").build();
-        authenticationLogic.validateCredentials(authenticationCredentials, user);
+        assertFalse(authenticationLogic.validateCredentials(authenticationCredentials, user).isPresent());
     }
 }

@@ -4,6 +4,8 @@ import com.kharidlo.service.authentication.exception.LoginFailureException;
 import com.kharidlo.service.authentication.model.AuthenticationCredentials;
 import com.kharidlo.service.authentication.model.AuthenticationToken;
 
+import java.util.Optional;
+
 public interface LoginService {
-    AuthenticationToken login(AuthenticationCredentials credentials) throws LoginFailureException;
+    Optional<AuthenticationToken> login(AuthenticationCredentials credentials);
 }

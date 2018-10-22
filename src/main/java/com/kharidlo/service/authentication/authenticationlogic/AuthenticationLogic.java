@@ -7,6 +7,8 @@ import com.kharidlo.service.userRegistration.entity.User;
 import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class AuthenticationLogic {
 
@@ -19,15 +21,15 @@ public class AuthenticationLogic {
                 .token(RandomStringUtils.random(length, useLetters, useNumbers)).build();
     }
 
-    public AuthenticationToken validateCredentials(AuthenticationCredentials authenticationCredentials, User user) throws LoginFailureException {
+    public Optional<AuthenticationToken> validateCredentials(AuthenticationCredentials authenticationCredentials, User user) {
 
         AuthenticationCredentials that = AuthenticationCredentials.builder()
                 .emailId(user.getEmailId()).password(user.getPassword()).build();
 
         if(!authenticationCredentials.equals(that))
-            throw new LoginFailureException("login.faliure.invalid.username.password", "login.faliure.invalid.username.password");
+            return Optional.ofNullable(null);
 
-        return generateToken();
+        return Optional.ofNullable(generateToken());
 
     }
 }

@@ -15,6 +15,8 @@ import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Optional;
+
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -40,26 +42,26 @@ public class LoginServiceImplTest {
     }
 
     @Test
-    public void shouldSuccessfullyLoggedIn() throws LoginFailureException {
+    public void shouldSuccessfullyLoggedIn() {
         AuthenticationCredentials authenticationCredentials = AuthenticationCredentials.builder()
                 .emailId("abhisek@gmail.com")
                 .password("thoughtworks").build();
         String emailId = authenticationCredentials.getEmailId();
         when(userLoginRepository.findUserByEmailId(emailId)).thenReturn(mockedUser);
         when(authenticationLogic.validateCredentials(Mockito.any(AuthenticationCredentials.class), Mockito.any(User.class)))
-                .thenReturn(AuthenticationToken.builder().token("abcdef4567fghj").build());
+                .thenReturn(Optional.of(AuthenticationToken.builder().token("abcdef4567fghj").build()));
 
-        AuthenticationToken generatedToken = loginService.login(authenticationCredentials);
+        AuthenticationToken generatedToken = loginService.login(authenticationCredentials).get();
         Assert.assertEquals("abcdef4567fghj", generatedToken.getToken());
     }
 
-    @Test(expected = LoginFailureException.class)
-    public void shouldThrowExceptionWhenCredentialsNotMatch() throws LoginFailureException {
+    @Test
+    public void shouldReturnNullWhenCredentialsNotMatch() {
         AuthenticationCredentials authenticationCredentials = AuthenticationCredentials.builder()
                 .emailId("abhisek@gmail.com")
                 .password("thoughtworks").build();
         when(userLoginRepository.findUserByEmailId(Mockito.anyString())).thenReturn(mockedUser);
-        when(authenticationLogic.validateCredentials(any(AuthenticationCredentials.class), any(User.class))).thenThrow(new LoginFailureException());
-        loginService.login(authenticationCredentials);
+        when(authenticationLogic.validateCredentials(any(AuthenticationCredentials.class), any(User.class))).thenReturn(Optional.ofNullable(null));
+        Assert.assertFalse(loginService.login(authenticationCredentials).isPresent());
     }
 }

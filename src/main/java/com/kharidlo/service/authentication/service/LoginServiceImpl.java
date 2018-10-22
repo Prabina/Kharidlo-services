@@ -11,6 +11,8 @@ import lombok.Builder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @Builder
 public class LoginServiceImpl implements LoginService {
@@ -23,7 +25,7 @@ public class LoginServiceImpl implements LoginService {
 
 
     @Override
-    public AuthenticationToken login(AuthenticationCredentials credentials) throws LoginFailureException {
+    public Optional<AuthenticationToken> login(AuthenticationCredentials credentials) {
         User user = userLoginRepository.findUserByEmailId(credentials.getEmailId());
         return authenticationLogic.validateCredentials(credentials, user);
     }
