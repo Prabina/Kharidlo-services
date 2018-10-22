@@ -3,13 +3,10 @@ package com.kharidlo.service.authentication.authenticationlogic;
 import com.kharidlo.service.authentication.model.AuthenticationCredentials;
 import com.kharidlo.service.authentication.model.AuthenticationToken;
 import com.kharidlo.service.userRegistration.entity.User;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Optional;
 
