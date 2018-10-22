@@ -1,7 +1,6 @@
 package com.kharidlo.service.authentication.service;
 
 import com.kharidlo.service.authentication.authenticationlogic.AuthenticationLogic;
-import com.kharidlo.service.authentication.exception.LoginFailureException;
 import com.kharidlo.service.authentication.model.AuthenticationCredentials;
 import com.kharidlo.service.authentication.model.AuthenticationToken;
 import com.kharidlo.service.authentication.repository.UserLoginRepository;
