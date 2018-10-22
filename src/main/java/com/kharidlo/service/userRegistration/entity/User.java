@@ -1,15 +1,9 @@
-package com.kharidlo.service.userRegistration.entity;
-
-import lombok.*;
+package com.kharidlo.service.UserRegistration.Entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
-
 @Entity
-@Data
-@Builder
-@AllArgsConstructor
 public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,5 +22,57 @@ public class User implements Serializable {
     @Column(name = "PHONE_NUMBER")
     private String phoneNumber;
 
+    public User(String fullName, String emailId, String password, String phoneNumber){
+        this.fullName = fullName;
+        this.emailId = emailId;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+    }
+
+    public User(int id){
+
+        this.id = id;
+    }
+
     public User(){}
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getEmailId() {
+        return emailId;
+    }
+
+    public void setEmailId(String emailId) {
+        this.emailId = emailId;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }
