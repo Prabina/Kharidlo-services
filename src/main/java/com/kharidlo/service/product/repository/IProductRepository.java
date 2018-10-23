@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ProductRepository extends CrudRepository<Product, Integer> {
+public interface IProductRepository extends CrudRepository<Product, Integer> {
 
 //    @Query("select p from Product p where p.title= :title")
 //    List<Product> search(@Param("title") String searchKey);
