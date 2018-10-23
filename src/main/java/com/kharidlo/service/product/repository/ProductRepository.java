@@ -11,6 +11,8 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends CrudRepository<Product, Integer> {
 
-    @Query("select p from Product p where p.title= :title")
-    List<Product> search(@Param("title") String searchKey);
+//    @Query("select p from Product p where p.title= :title")
+//    List<Product> search(@Param("title") String searchKey);
+
+    List<Product> findByTitleContainsIgnoreCase(String titlePart);
 }
