@@ -6,9 +6,11 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
-public interface IProductRepository extends CrudRepository<Product, Integer> {
+public interface ProductRepository extends CrudRepository<Product, Integer> {
 
     @Query("select p from Product p where p.title= :title")
-    public Iterable<Product> search(@Param("title") String searchKey);
+    List<Product> search(@Param("title") String searchKey);
 }

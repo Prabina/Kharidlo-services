@@ -41,7 +41,6 @@ public class LoginServiceImplTest {
     @Mock
     User mockedUser;
 
-
     @Before
     public void setUp(){
         loginService = LoginServiceImpl.builder().authenticationLogic(authenticationLogic)

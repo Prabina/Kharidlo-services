@@ -3,6 +3,8 @@ package com.kharidlo.service.product.controller;
 import com.kharidlo.service.product.model.Product;
 import com.kharidlo.service.product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,10 +17,16 @@ public class ProductController {
     ProductService productService;
 
 
-    @PostMapping(path = "/search")
+    @GetMapping
     @ResponseBody
-    public List<Product> search(@RequestParam String searchKey) {
+    public ResponseEntity<List<Product>> get(@RequestParam("searchKey") String searchKey) {
 
-        return productService.search(searchKey);
+        List<Product> products = productService.search(searchKey);
+
+        if(products == null || products.isEmpty()) {
+            return new ResponseEntity("{\"message\":\"Product not found\"}", HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity(products, HttpStatus.OK);
     }
 }
