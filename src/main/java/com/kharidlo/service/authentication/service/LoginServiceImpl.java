@@ -46,4 +46,9 @@ public class LoginServiceImpl implements LoginService {
 
         return token;
     }
+
+    @Override
+    public int logout(String emailId) {
+        return userAuthTokenRepository.deleteTokenForEmailId(emailId);
+    }
 }

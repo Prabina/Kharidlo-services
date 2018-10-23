@@ -7,4 +7,6 @@ import java.util.Optional;
 
 public interface LoginService {
     Optional<AuthenticationToken> login(AuthenticationCredentials credentials);
+
+    int logout(String emailId);
 }

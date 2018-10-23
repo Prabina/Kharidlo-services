@@ -19,4 +19,10 @@ public interface UserAuthenticationTokenRepository extends CrudRepository<UserAu
     @Query("Update UserAuthenticationToken token set token.authenticationToken = :authToken where token.emailId = :emailId")
     int updateAuthenticationTokenForEmailId(@Param("emailId") String emailId, @Param("authToken") String authToken);
 
+
+    @Modifying
+    @Transactional
+    @Query("Delete from UserAuthenticationToken token where token.emailId = :emailId")
+    int deleteTokenForEmailId(@Param("emailId") String emailId);
+
 }
