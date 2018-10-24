@@ -35,7 +35,6 @@ public class LoginServiceImplTest {
     @Mock
     private UserAuthenticationTokenRepository userAuthTokenRepository;
 
-    @Autowired
     private LoginService loginService;
 
     @Mock
@@ -43,8 +42,7 @@ public class LoginServiceImplTest {
 
     @Before
     public void setUp(){
-        loginService = LoginServiceImpl.builder().authenticationLogic(authenticationLogic)
-                .userLoginRepository(userLoginRepository).userAuthTokenRepository(userAuthTokenRepository).build();
+        loginService = new LoginServiceImpl(authenticationLogic, userLoginRepository, userAuthTokenRepository);
     }
 
     @Test

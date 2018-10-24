@@ -37,6 +37,7 @@ public class LoginControllerTest {
                 "}";
         AuthenticationToken token = AuthenticationToken.builder().token("abcd123fdhjdjk").build();
         when(loginService.login(Mockito.any(AuthenticationCredentials.class))).thenReturn(Optional.of(token));
+
         this.mockMvc.perform(post("/login").contentType(MediaType.APPLICATION_JSON).content(requestBody))
                 .andExpect(status().isAccepted())
                 .andExpect(jsonPath("$.token").value("abcd123fdhjdjk"));
@@ -49,6 +50,7 @@ public class LoginControllerTest {
                "\t\"password\":\"qwert\"\n" +
                "}";
         when(loginService.login(Mockito.any(AuthenticationCredentials.class))).thenReturn(Optional.ofNullable(null));
+
         this.mockMvc.perform(post("/login").contentType(MediaType.APPLICATION_JSON).content(requestBody))
         .andExpect(status().isForbidden())
         .andExpect(jsonPath("$.message").value("Invalid Credentials"));

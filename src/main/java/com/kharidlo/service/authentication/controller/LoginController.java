@@ -22,10 +22,11 @@ public class LoginController {
     public ResponseEntity<AuthenticationToken> login(@RequestBody AuthenticationCredentials credentials) {
         Optional<AuthenticationToken > token = loginService.login(credentials);
 
-        if(token.isPresent())
+        if(token.isPresent()) {
             return new ResponseEntity(token.get(), HttpStatus.ACCEPTED);
-        else
-            return new ResponseEntity("{\"message\":\"Invalid Credentials\"}",HttpStatus.FORBIDDEN);
+        } else {
+            return new ResponseEntity("{\"message\":\"Invalid Credentials\"}", HttpStatus.FORBIDDEN);
+        }
     }
 
     @DeleteMapping(value = "/logout/{emailId}")

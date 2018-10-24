@@ -14,18 +14,22 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-@Builder
 public class LoginServiceImpl implements LoginService {
 
-    @Autowired
     private AuthenticationLogic authenticationLogic;
 
-    @Autowired
     private UserLoginRepository userLoginRepository;
 
-    @Autowired
     private UserAuthenticationTokenRepository userAuthTokenRepository;
 
+    @Autowired
+    public LoginServiceImpl(AuthenticationLogic authenticationLogic,
+                            UserLoginRepository userLoginRepository,
+                            UserAuthenticationTokenRepository userAuthTokenRepository) {
+        this.authenticationLogic = authenticationLogic;
+        this.userLoginRepository = userLoginRepository;
+        this.userAuthTokenRepository = userAuthTokenRepository;
+    }
 
     @Override
     public Optional<AuthenticationToken> login(AuthenticationCredentials credentials) {

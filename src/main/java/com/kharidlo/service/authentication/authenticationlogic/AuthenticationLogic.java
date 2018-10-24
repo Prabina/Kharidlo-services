@@ -20,7 +20,7 @@ public class AuthenticationLogic {
                 .token(RandomStringUtils.random(length, useLetters, useNumbers)).role(user.getRole()).build();
     }
 
-    public Optional<AuthenticationToken> validateCredentials(AuthenticationCredentials authenticationCredentials, User user) {
+    public Optional<AuthenticationToken> validateCredentials(AuthenticationCredentials authenticationCredentials, User  user) {
 
         AuthenticationCredentials that = AuthenticationCredentials.builder()
                 .emailId(user.getEmailId()).password(user.getPassword()).build();
