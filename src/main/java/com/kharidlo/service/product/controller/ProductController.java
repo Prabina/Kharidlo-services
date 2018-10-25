@@ -1,8 +1,10 @@
 package com.kharidlo.service.product.controller;
 
 import com.kharidlo.service.product.model.Product;
+import com.kharidlo.service.product.model.ProductCategory;
 import com.kharidlo.service.product.service.IFileStorageService;
 import com.kharidlo.service.product.service.IProductService;
+import com.kharidlo.service.product.service.ProductCategoryService;
 import com.kharidlo.service.product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,6 +24,9 @@ public class ProductController {
 
     @Autowired
     IFileStorageService fileStorageService;
+
+    @Autowired
+    ProductCategoryService productCategoryService;
 
 
     @GetMapping
@@ -50,5 +55,18 @@ public class ProductController {
         return fileStorageService.uploadImage(file);
     }
 
+
+    @GetMapping("/categories")
+    @ResponseBody
+    public ResponseEntity<List<ProductCategory>> getAllProductCategories() {
+
+        List<ProductCategory> productCategories = productCategoryService.getAllProductCategories();
+
+        if(productCategories == null || productCategories.isEmpty()) {
+            return new ResponseEntity("{\"message\":\"Category not found\"}", HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity(productCategories, HttpStatus.OK);
+    }
 
 }

@@ -3,11 +3,15 @@ package com.kharidlo.service.product.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kharidlo.service.product.controller.ProductController;
 import com.kharidlo.service.product.model.Product;
+import com.kharidlo.service.product.model.ProductCategory;
+import com.kharidlo.service.product.repository.IProductCategoryRepository;
 import com.kharidlo.service.product.service.IFileStorageService;
 import com.kharidlo.service.product.service.IProductService;
+import com.kharidlo.service.product.service.ProductCategoryService;
 import com.kharidlo.service.product.service.ProductService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -37,6 +41,9 @@ public class ProductControllerTest {
 
     @MockBean
     private IFileStorageService fileStorageService;
+
+    @MockBean
+    private ProductCategoryService productCategoryService;
 
     @Test
     public void shouldReturnListOfProductsWhenSearchedByTitle() throws Exception {
@@ -81,6 +88,18 @@ public class ProductControllerTest {
         when(fileStorageService.uploadImage(imageObject)).thenReturn("newpath");
 
         this.mockMvc.perform(post("/product/imageupload").contentType(MediaType.MULTIPART_FORM_DATA).content(new byte[0]))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void shouldReturnListOfProductCategories() throws Exception {
+
+        List<ProductCategory> productCategories = new ArrayList<ProductCategory>();
+        productCategories.add(new ProductCategory());
+
+        when(productCategoryService.getAllProductCategories()).thenReturn(productCategories);
+
+        this.mockMvc.perform(get("/product/categories"))
                 .andExpect(status().isOk());
     }
 }
