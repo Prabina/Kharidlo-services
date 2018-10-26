@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Getter
+@Setter
 @NoArgsConstructor
 @Table(name = "ORDERED_ITEMS")
 public class OrderedItem {
@@ -15,7 +16,7 @@ public class OrderedItem {
     @Column(name = "ID")
     private int id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "ORDER_ID")
     private Order order;
 

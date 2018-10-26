@@ -41,6 +41,7 @@ public class OrderServiceImpl {
                 if (!isProductAvailable(orderedItem.getProductId())) {
                     return false;
                 }
+                orderedItem.setOrder(order);
             }
             return true;
         } else {

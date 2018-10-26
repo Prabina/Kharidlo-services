@@ -30,7 +30,7 @@ public class Order {
     @Column(name = "ORDER_ADDRESS")
     private String address;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderedItem> items;
 
     public Order(String emailId, double totalPrice, String status, String address, List<OrderedItem> items) {
